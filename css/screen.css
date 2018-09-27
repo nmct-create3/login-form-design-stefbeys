@@ -1,12 +1,49 @@
 /*------------------------------------*\
 #FONTS
 \*------------------------------------*/
+@font-face {
+    font-family: Inter-UI;
+    src: url("../fonts/Inter-UI-Regular.woff2");
+    font-weight: normal;
+}
+@font-face {
+    font-family: Inter-UI;
+    src: url("../fonts/Inter-UI-Bold.woff2");
+    font-weight: bold;
+}
+@font-face {
+    font-family: Inter-UI;
+    src: url("../fonts/Inter-UI-Medium.woff2");
+}
 
 /*------------------------------------*\
 #Variables
 \*------------------------------------*/
 
 :root {
+    --boxshadow:inset 0 1px 1px #20223a15;
+    --color-white:#ffffff;
+    --color-alpha-xx-light: #DCEAFF;
+    --color-alpha-x-light: #81ADF0;
+    --color-alpha-light: #4F95FF;
+    --color-alpha: #3385FF;
+    --color-alpha-dark: #2E77E6;
+    --color-alpha-x-dark: #1B4186;
+
+
+    --color-neutral-xxxx-light: #F5F6FA;
+    --color-neutral-xxx-light: #E2E3E7;
+    --color-neutral-xx-light: #CACCD4;
+    --color-neutral-x-light: #B5B6C0;
+    --color-neutral-light: #A0A1AD;
+    --color-neutral: #8B8C9A;
+    --color-neutral-dark: #757787;
+    --color-neutral-x-dark: #606274;
+    --color-neutral-xx-dark: #4B4C60;
+    --color-neutral-xxx-dark: #35374D;
+    --color-neutral-xxxx-dark: #20223A;
+    /* var(--fontsize) */
+    --fontsize: 16px
 
 }
 
@@ -23,14 +60,15 @@
 */
 
 html {
-    font-size: 16px;
+    font-size: var(--fontsize);
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: grey;
+    font-family: Inter-UI-Bold,Helvetica, arial, sans-serif;
+    color: var(--color-neutral-xxxx-dark);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    background-color: var(--color-neutral-xxxx-light);
+    height: 100%;
 }
 
 *,
@@ -47,13 +85,13 @@ html {
 */
 
 ::-moz-selection {
-    background: HotPink;
+    background: var(--color-alpha);
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: HotPink;
+    background: var(--color-alpha);
     color: white;
     text-shadow: none;
 }
@@ -78,7 +116,9 @@ img {
     ---
     Default markup for typographic elements
 */
-
+body{
+    height: 100%;
+}
 h1,
 h2,
 h3 {
@@ -158,18 +198,23 @@ hr {
 }
 
 a {
-    color: HotPink;
+    color: var(--color-alpha);
     transition: all .1s ease-in-out;
 }
-
+label,input{
+    display: block;
+}
+input{
+    box-shadow: var(--boxshadow);
+}
 a:visited,
 a:active {
-    color: HotPink;
+    color: var(--color-alpha-x-light);
 }
 
 a:hover,
 a:focus {
-    color: DeepPink;
+    color: var(--color-alpha-x-dark);
 }
 
 /*------------------------------------*\
@@ -190,7 +235,11 @@ a:focus {
 .o-row--login {
     /* stuff here to align the card */
 }
-
+.o-row--body{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
 /* size modifiers */
 
 .o-row--lg {
@@ -431,19 +480,76 @@ a:focus {
     ---
     Website main logo
 */
-
+ .c-logo{
+     height: 24px;
+     display: flex;
+     justify-content: center;
+ }
+ .c-logo__symbol{
+     height: 100%;
+     display: block;
+ }
+ .c-logo__symbol--1{
+      fill: var(--color-neutral-xxxx-dark);
+  }
+.c-logo__symbol--2{
+       fill: var(--color-alpha);
+   }
+.c-logo__symbol--3{
+        fill: var(--color-alpha-x-dark);
+    }
+.alternate.c-logo__symbol--1{
+    fill: var(--color-white);
+}
+.alternate.c-logo__symbol--2{
+    fill: var(--color-white);
+}
+.alternate.c-logo__symbol--3{
+    fill: var(--color-white);
+}
+.alternate.background{
+    background-image: linear-gradient(var(--color-alpha-light), var(--color-alpha-dark));
+}
 /*
     Component: Card
     ---
     Card with box shadow
 */
+ .c-card{
+     background-color: #ffffff;
+     border-radius: 3px;
+     border: var(--color-neutral-x-light);
+     box-shadow: 0 0 5px 2px var(--color-neutral-x-light);
+ }
+ .c-card__body{
+     padding: 48px;
 
+ }
+ .c-card__title{
+     font-size: 18px;
+     line-height: 24px;
+     font-weight: normal;
+     padding-top: 48px;
+     text-align: center;
+     margin: 0;
+ }
+.c-card__footer{
+    padding: 12px  0 12px 0;
+    text-align: center;
+    border-top: var(--color-neutral-xxx-light) 1px solid;
+    color: var(--color-neutral-dark);
+}
+.c-card__footer p{
+    margin: 0;
+}
 /*
     Component: Forms
     ---
     Everything form related here
 */
-
+  .form-field--option{
+      display: flex;
+  }
 /*
     Component: Input
     ---
@@ -451,10 +557,24 @@ a:focus {
 */
 
 .c-input {
-
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: var(--color-neutral-xxx-light) 1px solid;
+    border-radius: 4px;
+    color: var(--color-neutral-xxxx-dark);
+    font-family: Inter-UI;
+    font-size: var(--fontsize);
+    line-height: 24px;
+    padding: 11px;
+    outline: none;
 }
 
 .c-input:focus {
+    border: var(--color-alpha-x-light) 1px solid;
+    box-shadow: 0px 0px 5px 1px var(--color-alpha-x-light);
+
 }
 
 /*
@@ -464,7 +584,15 @@ a:focus {
 */
 
 .c-label {
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 8px;
+    color: var(--color-neutral-x-dark);
 
+}
+.c-label--option{
+    margin-bottom: 0;
+    margin-left: 8px;
 }
 
 /* If a input is focused within the form-field class change te color of the label */
@@ -533,19 +661,30 @@ a:focus {
 */
 
 .c-button {
-
+    font-size: var(--fontsize);
+    font-weight: bold;
+    line-height: 24px;
+    color: #ffffff;
+background-color: var(--color-alpha);
+    border: var(--color-alpha-dark) 1px solid;
+    border-radius: 4px;
+    width: 100%;
+    padding: 11px;
+    outline: none;
 }
 
 .c-button:hover {
-
+ background-color: var(--color-alpha-light);
+    border: var(--color-alpha) 1px solid;
 }
 
 .c-button:focus {
-
+    border: var(--color-alpha-x-dark) 2px solid;
 }
 
 .c-button:active {
-
+    border: var(--color-alpha-x-dark) 1px solid;
+    background-color: var(--color-alpha-dark);
 }
 
 .c-button--block {
